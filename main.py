@@ -22,12 +22,12 @@ class Blog(db.Model):
 @app.route('/', methods=['POST', 'GET'])
 def index():
 
-    if request.method == 'POST':
-        blog_body = request.form['body']
-        blog_title = request.form['title']
-        new_blog = Blog(blog_title, blog_body)
-        db.session.add(new_blog)
-        db.session.commit()
+    #if request.method == 'POST':
+    #    blog_body = request.form['body']
+    #    blog_title = request.form['title']
+    #    new_blog = Blog(blog_title, blog_body)
+    #    db.session.add(new_blog)
+    #    db.session.commit()
 
     blogs = Blog.query.all()
     blogs_length = int(len(blogs))
