@@ -5,7 +5,6 @@
     <p>No blogs yet</p>
     {% else %}
 
-        <ul>
             {% for blog in blogs %}
             <b><a href="/blog?id={{ blog.id }}">{{ blog.title }}</a></b> <br>
                 {{ blog.body }}<br>
@@ -13,7 +12,6 @@
                     <hr>
                     <p></p>
             {% endfor %}
-        </ul>
 
     {% endif %}
 

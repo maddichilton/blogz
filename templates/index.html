@@ -1,23 +1,17 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <a href="{{ url_for('blog_posts') }}">posts!</a> | <a href="{{ url_for('new_post') }}">add new!</a>
+
     {% if blogs|length == 0 %}
     <p>No blogs yet</p>
     {% else %}
 
-        <ul>
-            {% for blog in blogs %}
-            <b>{{ blog.title }}</b> <br>
-                {{ blog.body }}<br>
-                    <p></p>
-                    <hr>
-                    <p></p>
-            {% endfor %}
-        </ul>
+        <h2>latest post!</h2>
+
+        <b>{{ recent_blog.title }}</b> <br>
+        {{ recent_blog.body }}
 
     {% endif %}
 
-    <hr />
 
 {% endblock %}

@@ -30,9 +30,12 @@ def index():
         db.session.commit()
 
     blogs = Blog.query.all()
+    blogs_length = int(len(blogs))
+    recent_id = blogs_length - 1
+    recent_blog = blogs[recent_id]
     
-    return render_template('index.html',title="Index!", 
-        blogs=blogs)
+    return render_template('index.html',title="build a blog!", 
+        blogs=blogs, recent_blog=recent_blog)
 
 
 @app.route('/newpost', methods=['POST', 'GET'])
@@ -56,7 +59,7 @@ def new_post():
                 title_error = error
             else:
                 title_error = ""
-            return render_template('newpost.html',title="Build a blog!", blogs=blogs, 
+            return render_template('newpost.html',title="build a blog!", blogs=blogs, 
         body_error=body_error, title_error=title_error, old_title=blog_title, old_body=blog_body)
         new_blog = Blog(blog_title, blog_body)
         db.session.add(new_blog)
@@ -71,7 +74,7 @@ def new_post():
 
     blogs = Blog.query.all()
 
-    return render_template('newpost.html',title="Build a blog!", 
+    return render_template('newpost.html',title="build a blog!", 
         blogs=blogs, error=error, old_title=blog_title, old_body=blog_body)
 
 @app.route('/blog', methods=['GET'])
@@ -84,7 +87,7 @@ def blog_posts():
         blog = blogs[blog_id]
         return render_template("post.html", blog=blog) 
 
-    return render_template('blog.html',title="Build a blog!", 
+    return render_template('blog.html',title="build a blog!", 
         blogs=blogs)
 
 
