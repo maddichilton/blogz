@@ -1,13 +1,14 @@
 {% extends "base.html" %}
 
 {% block content %}
+    <a href="{{ url_for('blog_posts') }}">posts!</a> | <a href="{{ url_for('new_post') }}">add new!</a>
     {% if blogs|length == 0 %}
     <p>No blogs yet</p>
     {% else %}
 
         <ul>
             {% for blog in blogs %}
-            <b><a href="/blog?id={{ blog.id }}">{{ blog.title }}</a></b> <br>
+            <b>{{ blog.title }}</b> <br>
                 {{ blog.body }}<br>
                     <p></p>
                     <hr>
