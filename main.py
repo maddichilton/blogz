@@ -8,12 +8,17 @@ app.config['SQLALCHEMY_ECHO'] = True
 db = SQLAlchemy(app)
 
 
+# RECENT: functional until new post, upon which presents TypeError: __init__() missing 1 required positional argument: 'author'
+# TO DO: in Blogz assignment: add Login and Signup pages
+# ELSE: add author field to new post
+
+
 class Blog(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(75))
     body = db.Column(db.String(500))
-    user_id = db.column(db.Integer, db.ForeignKey("user.id"))
+    author_id = db.Column(db.Integer, db.ForeignKey("user.id"))
 
     def __init__(self, title, body, author):
         self.title = title
@@ -45,7 +50,11 @@ def index():
     blogs = Blog.query.all()
     blogs_length = int(len(blogs))
     recent_id = blogs_length - 1
-    recent_blog = blogs[recent_id]
+    if not recent_id <= 0:
+        recent_blog = blogs[recent_id]
+    else:
+        recent_blog = ""
+    
     
     return render_template('index.html',title="build a blog!", 
         blogs=blogs, recent_blog=recent_blog)
