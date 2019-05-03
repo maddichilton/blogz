@@ -6,7 +6,7 @@
     {% else %}
 
             {% for blog in blogs %}
-            <b><a href="/blog?id={{ blog.id }}">{{ blog.title }}</a></b> <br>
+            <b><a href="/blog?id={{ blog.id }}">{{ blog.title }}</a></b> | {{blog.author.email}}<br>
                 {{ blog.body }}<br>
                     <p></p>
                     <hr>
@@ -14,7 +14,5 @@
             {% endfor %}
 
     {% endif %}
-
-    <hr />
 
 {% endblock %}

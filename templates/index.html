@@ -10,8 +10,14 @@
 
         <b>{{ recent_blog.title }}</b> <br>
         {{ recent_blog.body }}
+        <p>by <i>{{recent_blog.author.email}}</i></p>
 
     {% endif %}
+
+    <h2>users!</h2>
+    {% for user in users %}
+    <p>{{ user.email }}</p>
+    {% endfor %}
 
 
 {% endblock %}

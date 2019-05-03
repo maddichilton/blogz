@@ -3,9 +3,10 @@
 {% block content %}
     <form method='post'>
         <label> 
-            Title:
+            title:
             <input type="text" name='title' value="{{ old_title }}" /> {{title_error}}<br> 
-            <p>New Blog:</p>
+            <p>author: {{session['user']}}</p>
+            <p>new blog:</p>
             <p><textarea type="textarea" name='body' value="{{ old_body }}" />{{ old_body }}</textarea> {{body_error}}</p>
         </label>
         <input type="submit" value='Add Blog' />
