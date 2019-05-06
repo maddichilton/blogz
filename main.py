@@ -146,18 +146,34 @@ def blog_posts():
     return render_template('blog.html',title="build a blog!", 
         blogs=blogs)
 
+@app.route('/user', methods=['GET'])
+def user_page():
+    users = User.query.all()
+
+    if request.args.get('id'):
+        user_id = int(request.args.get('id'))
+        users = User.query.all()
+        
+        blogs = Blog.query.all()
+
+        return render_template("user.html", users=users, user_id=user_id, blogs=blogs) 
+
+    return render_template('blog.html',title="build a blog!", 
+        blogs=blogs)
+
 @app.route('/login', methods=['POST', 'GET'])
 def login():
     if request.method == 'POST':
         email = request.form['email']
         password = request.form['password']
         user = User.query.filter_by(email=email).first()
-        if user.password == password:
-            session['user'] = user.email
-            flash("Logged in")
-            return redirect('/')
+        if user:
+            if user.password == password:
+                session['user'] = user.email
+                flash("Logged in")
+                return redirect('/')
         else:
-            flash('User password incorrect, or user does not exist', 'error')
+            flash('User password incorrect, or user does not exist')
 
     return render_template('login.html')
 

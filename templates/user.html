@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+{% for blog in blogs %}
+    {% if blog.author_id == user_id %}
+        <b><a href="/blog?id={{ blog.id }}">{{ blog.title }}</a></b> | {{blog.author.email}}<br>
+        {{ blog.body }}<br>
+        <p></p>
+        <hr>
+        <p></p>
+    {% endif %}
+{% endfor %}
+
+
+{% endblock %}

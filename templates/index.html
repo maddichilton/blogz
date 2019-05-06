@@ -8,15 +8,15 @@
 
         <h2>latest post!</h2>
 
-        <b>{{ recent_blog.title }}</b> <br>
+        <b><a href="/blog?id={{ recent_blog.id }}">{{ recent_blog.title }}</a></b> <br>
         {{ recent_blog.body }}
-        <p>by <i>{{recent_blog.author.email}}</i></p>
+        <p>by <i><a href="/user?id={{ recent_blog.author_id }}">{{recent_blog.author.email}}</a></i></p>
 
     {% endif %}
 
     <h2>users!</h2>
     {% for user in users %}
-    <p>{{ user.email }}</p>
+    <p><a href="/user?id={{ user.id }}">{{ user.email }}</a></p>
     {% endfor %}
 
 
